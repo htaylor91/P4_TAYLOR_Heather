@@ -19,6 +19,7 @@ const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const radioContainer = document.getElementById("radioContainer");
+const checkboxOne = document.getElementById("checkbox1");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -151,6 +152,20 @@ function validRadios() {
   radioContainer.setAttribute("data-error-visible", "true");
   radioContainer.setAttribute("data-error", "Veuillez choisir une ville.");
   console.log("I am NOT a valid city.");
+  return false;
+}
+
+//The function validCheckbox() validates the user checkbox input to verify that the conditions of use checkbox has been selected - issue #2
+function validCheckbox() {
+  if (document.getElementById("checkbox1").checked) {
+      checkboxOne.parentElement.setAttribute("data-error-visible", "false");
+      console.log("I'm a valid checkbox!");
+      return true;
+  }
+//checkboxOne.parentElement.setAttribute adds an error message if the conditions of use checkbox has not been selected - issue #3
+  checkboxOne.parentElement.setAttribute("data-error-visible", "true");
+  checkboxOne.parentElement.setAttribute("data-error", "Veuillez lire et accepter nos conditions d'utilisation.");
+  console.log("I am NOT a valid checkbox.");
   return false;
 }
 
