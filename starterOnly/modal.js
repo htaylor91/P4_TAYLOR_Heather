@@ -169,6 +169,33 @@ function validCheckbox() {
   return false;
 }
 
+//The function validate() validates all of the form inputs when the user clicks the submit button.
+//The form inputs are validated one by one, in the order that they appear in the HTML form.
+function validate(){
+  let valid = false;
+//The if statement below checks each input validation function to see if it returns true.
+//If ALL of the input functions from the form return true, then valid = true.
+  if(validFirstName() && 
+      validLastName() && 
+      validEmail() && 
+      validBirthdate() && 
+      validQuantity() && 
+      validRadios() && 
+      validCheckbox()){
+    valid = true;
+  }
+//If valid = true, then the form is valid, and the form validation function validate() returns true.
+  if(valid){
+    console.log("The form has been validated!");
+    return true;
+  }
+//If valid does not = true, then valid continues to = false, and the form validation function validate() returns false.
+  else{
+    console.log("The form has NOT passed validation.");
+    return false;
+  }
+}
+
 //The three parameters of the function validForm() are element, method, and event.
 //The element is the DOM element that has been declared as a constant.
 //The method is the function that is being used to validate the corresponding element's user input.
