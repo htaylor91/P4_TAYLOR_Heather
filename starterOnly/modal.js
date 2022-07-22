@@ -18,6 +18,7 @@ const lastName = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
+const radioContainer = document.getElementById("radioContainer");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -124,12 +125,41 @@ function validQuantity() {
   return false;
 }
 
+//The function validRadios() validates the user radio button input to verify that a city has been selected - issue #2
+function validRadios() {
+//const locations retrieves all 6 radio buttons with the name "location" and puts them into a Node List.
+  const locations = document.querySelectorAll('input[name="location"]');
+//the for...of loop "for (const location of locations)" looks for a radio button with the name "location" in the Node List.
+  for (const location of locations) {
+//if the first radio button with the name "location" is selected by the user, the function validRadios() returns true
+    if (location.checked) {
+      radioContainer.setAttribute("data-error-visible", "false");
+      console.log("I'm a valid city!");
+      return true;
+    }
+//if the first radio button was not selected by the user, then the "continue" statement breaks one iteration in the for...of loop.
+//then, the "continue" statement continues with the next iteration in the for...of loop.
+//this iteration continues until either
+/////-a CHECKED radio button with the name "location" returns true
+/////-OR, until the for...of loop iterates through all 6 radio buttons.
+//if at least one of the radio buttons has been selected, the function validRadios() will return true.
+    else {
+      continue;
+    }
+  }
+//radioContainer.setAttribute adds an error message if none of the radio buttons with the name "location" have been selected - issue #3
+  radioContainer.setAttribute("data-error-visible", "true");
+  radioContainer.setAttribute("data-error", "Veuillez choisir une ville.");
+  console.log("I am NOT a valid city.");
+  return false;
+}
+
 //The three parameters of the function validForm() are element, method, and event.
 //The element is the DOM element that has been declared as a constant.
 //The method is the function that is being used to validate the corresponding element's user input.
 //The event is the focusout event, which fires when an element is about to lose focus.
 function validForm(element, method, event) {
-  //The function executes the event listener "focusout"
+//The function executes the event listener "focusout"
   element.addEventListener(event, method);
 }
 //The function validForm() is called for all of the form entries, except for the radio buttons and checkbox.
