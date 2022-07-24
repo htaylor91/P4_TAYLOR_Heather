@@ -8,11 +8,12 @@ function editNav() {
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
+const modalbg = document.querySelector(".bground");
+const modalContent = document.getElementById("modalContent");
 const close = document.querySelectorAll(".close");
 const form = document.getElementById("form");
+const formData = document.querySelectorAll(".formData");
 const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
 const email = document.getElementById("email");
@@ -20,6 +21,19 @@ const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const radioContainer = document.getElementById("radioContainer");
 const checkboxOne = document.getElementById("checkbox1");
+const formConfirmation = document.getElementById("formConfirmation");
+const confirmationBody = document.getElementById("confirmationBody");
+const submitButton = document.getElementById("button"); //"c'est parti"
+const closeForm = document.getElementById("closeForm"); //"fermer"
+
+//Adjust the top margin of the modal
+//Reveal navigation bar in mobile view
+modalContent.style.margin = "20% auto";
+formConfirmation.style.margin = "20% auto";
+
+/****************************
+    Open the Modal
+****************************/
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -27,6 +41,10 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  //display the form content
+  modalContent.style.display = "block";
+  //display the form submission confirmation content
+  formConfirmation.style.display = "none";
 }
 
 /****************************
@@ -42,6 +60,44 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
+/****************************
+    Add a confirmation
+    message for successful
+    form submission
+
+    Issue #4
+****************************/
+
+//formConfirmation styling
+formConfirmation.style.display = "none";
+formConfirmation.style.alignItems = "center";
+formConfirmation.style.textAlign = "center";
+formConfirmation.style.height = "100%";
+formConfirmation.style.marginBottom = "90%";
+
+//confirmationBody styling
+confirmationBody.style.height = "50%";
+confirmationBody.style.flexDirection = "column";
+confirmationBody.style.justifyContent = "end";
+confirmationBody.style.gap = "10em";
+
+//The function launchConfirmation()
+//launches form submission confirmation message and window
+function launchConfirmation() {
+  formConfirmation.style.display = "flex";
+  modalContent.style.display = "none";
+  confirmationBody.style.display = "flex";
+}
+
+//closeFormConfirmation() event listener
+closeForm.addEventListener("click", closeModal);
+closeForm.addEventListener("click", closeFormConfirmation);
+
+//The function closeFormConfirmation() closes both the modal and the confirmation window
+function closeFormConfirmation() {
+  formConfirmation.style.display = "none";
+  confirmationBody.style.display = "none";
+}
 /****************************
     Implement Form Entries
     Issue #2
@@ -172,6 +228,7 @@ function validCheckbox() {
 //The function validate() validates all of the form inputs when the user clicks the submit button.
 //The form inputs are validated one by one, in the order that they appear in the HTML form.
 function validate(){
+  event.preventDefault();
   let valid = false;
 //The if statement below checks each input validation function to see if it returns true.
 //If ALL of the input functions from the form return true, then valid = true.
@@ -186,6 +243,10 @@ function validate(){
   }
 //If valid = true, then the form is valid, and the form validation function validate() returns true.
   if(valid){
+    //launch the form confirmation if the form is validated
+    launchConfirmation();
+    //reset the form input fields if the form is validated
+    form.reset();
     console.log("The form has been validated!");
     return true;
   }
