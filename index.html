@@ -53,7 +53,7 @@
       </div>
 
       <div class="bground">
-        <div class="content">
+        <div class="content" id="modalContent">
           <span class="close"></span>
           <div class="modal-body">
             <form
@@ -71,7 +71,6 @@
                   type="text"
                   id="first"
                   name="first"
-                  minlength="2"
                 /><br>
               </div>
               <div
@@ -82,7 +81,6 @@
                   type="text"
                   id="last"
                   name="last"
-                  minlength="2"
                 /><br>
               </div>
               <div
@@ -113,8 +111,6 @@
                   class="text-control" 
                   id="quantity" 
                   name="quantity" 
-                  min="0" 
-                  max="99" 
                   />
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
@@ -187,7 +183,6 @@
                   Portland</label
                 >
               </div>
-
               <div
                 class="formData">
                 <input
@@ -208,13 +203,20 @@
                 <br>
               </div>
               <input
-                class="btn-submit"
+                class="btn-submit button"
                 type="submit"
-                class="button"
                 id="button"
                 value="C'est parti"
               />
             </form>
+          </div>
+        </div>
+        <div class="content" id="formConfirmation">
+          <span class="close"></span>
+          <div class="modal-body" id ="confirmationBody">
+            <p>Merci pour
+              <br>votre inscription!</p>
+              <button class="btn-submit" id="closeForm">Fermer</button>
           </div>
         </div>
       </div>
