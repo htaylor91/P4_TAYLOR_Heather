@@ -435,7 +435,7 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: normal;
   white-space: nowrap;
 }
@@ -513,6 +513,15 @@ footer {
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .hero-content {
+    min-width: 0;
+  }
+  .hero-headline {
+    font-size: 3rem;
   }
 }
 
