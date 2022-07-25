@@ -13,7 +13,7 @@ const modalbg = document.querySelector(".bground");
 const modalContent = document.getElementById("modalContent");
 const close = document.querySelectorAll(".close");
 const form = document.getElementById("form");
-const formData = document.querySelectorAll(".formData");
+const formData = document.querySelectorAll(".formData"); //not in use
 const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
 const email = document.getElementById("email");
@@ -25,11 +25,6 @@ const formConfirmation = document.getElementById("formConfirmation");
 const confirmationBody = document.getElementById("confirmationBody");
 const submitButton = document.getElementById("button"); //"c'est parti"
 const closeForm = document.getElementById("closeForm"); //"fermer"
-
-//Adjust the top margin of the modal
-//Reveal navigation bar in mobile view
-modalContent.style.margin = "20% auto";
-formConfirmation.style.margin = "20% auto";
 
 /****************************
     Open the Modal
@@ -68,19 +63,6 @@ function closeModal() {
     Issue #4
 ****************************/
 
-//formConfirmation styling
-formConfirmation.style.display = "none";
-formConfirmation.style.alignItems = "center";
-formConfirmation.style.textAlign = "center";
-formConfirmation.style.height = "100%";
-formConfirmation.style.marginBottom = "90%";
-
-//confirmationBody styling
-confirmationBody.style.height = "50%";
-confirmationBody.style.flexDirection = "column";
-confirmationBody.style.justifyContent = "end";
-confirmationBody.style.gap = "10em";
-
 //The function launchConfirmation()
 //launches form submission confirmation message and window
 function launchConfirmation() {
@@ -117,7 +99,7 @@ function validFirstName() {
   }
 //firstName.parentElement.setAttribute adds an error message if the first name does not match the regex - issue #3
   firstName.parentElement.setAttribute("data-error-visible", "true");
-  firstName.parentElement.setAttribute("data-error", "Veuillez saisir un prénom valide.");
+  firstName.parentElement.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du prénom.");
   console.log("I am NOT a valid first name.");
   return false;
 }
@@ -132,7 +114,7 @@ function validLastName() {
   }
 //lastName.parentElement.setAttribute adds an error message if the last name does not match the regex - issue #3
   lastName.parentElement.setAttribute("data-error-visible", "true");
-  lastName.parentElement.setAttribute("data-error", "Veuillez saisir un nom de famille valide.");
+  lastName.parentElement.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
   console.log("I am NOT a valid last name.");
   return false;
 }
@@ -154,15 +136,16 @@ function validEmail() {
 
 //The function validBirthdate() validates the user birthdate input against the constant regexBirthdate - issue #2
 function validBirthdate() {
-  const regexBirthdate = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
+  const regexBirthdate = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
   if (birthdate.value.trim().match(regexBirthdate)) {
       birthdate.parentElement.setAttribute("data-error-visible", "false");
       console.log("I'm a valid birthday!");
+      console.log(birthdate);
       return true;
   }
 //birthdate.parentElement.setAttribute adds an error message if the birthdate does not match the regex - issue #3  
   birthdate.parentElement.setAttribute("data-error-visible", "true");
-  birthdate.parentElement.setAttribute("data-error", "Veuillez saisir une date de naissance valide.");
+  birthdate.parentElement.setAttribute("data-error", "Veuillez saisir votre date de naissance.");
   console.log("I am NOT a valid birthday.");
   return false;
 }
@@ -177,7 +160,7 @@ function validQuantity() {
   }
 //quantity.parentElement.setAttribute adds an error message if the quantity of tournaments does not match the regex - issue #3  
   quantity.parentElement.setAttribute("data-error-visible", "true");
-  quantity.parentElement.setAttribute("data-error", "Veuillez saisir une quantité valide.");
+  quantity.parentElement.setAttribute("data-error", "Veuillez saisir une quantité de tournois.");
   console.log("I am NOT a valid quantity of tournaments.");
   return false;
 }
@@ -206,7 +189,7 @@ function validRadios() {
   }
 //radioContainer.setAttribute adds an error message if none of the radio buttons with the name "location" have been selected - issue #3
   radioContainer.setAttribute("data-error-visible", "true");
-  radioContainer.setAttribute("data-error", "Veuillez choisir une ville.");
+  radioContainer.setAttribute("data-error", "Veuillez choisir une option.");
   console.log("I am NOT a valid city.");
   return false;
 }
@@ -220,10 +203,16 @@ function validCheckbox() {
   }
 //checkboxOne.parentElement.setAttribute adds an error message if the conditions of use checkbox has not been selected - issue #3
   checkboxOne.parentElement.setAttribute("data-error-visible", "true");
-  checkboxOne.parentElement.setAttribute("data-error", "Veuillez lire et accepter nos conditions d'utilisation.");
+  checkboxOne.parentElement.setAttribute("data-error", "Veuillez vérifier que vous acceptez les termes et conditions.");
   console.log("I am NOT a valid checkbox.");
   return false;
 }
+
+/****************************
+    Valid the entire form
+    Issue #2
+    Issue #3
+****************************/
 
 //The function validate() validates all of the form inputs when the user clicks the submit button.
 //The form inputs are validated one by one, in the order that they appear in the HTML form.
@@ -256,6 +245,12 @@ function validate(){
     return false;
   }
 }
+
+/****************************
+    Validate each input
+    Issue #2
+    Issue #3
+****************************/
 
 //The three parameters of the function validForm() are element, method, and event.
 //The element is the DOM element that has been declared as a constant.
