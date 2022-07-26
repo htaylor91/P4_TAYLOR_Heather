@@ -44,6 +44,7 @@ img {
 
 .main-navbar {
     float: right;
+    margin-right: 50px;
 }
 .topnav a {
   float: left;
@@ -63,21 +64,24 @@ img {
   border-radius: 15px;
 }
 
-.topnav a.active {
+.topnav a:active {
   background-color: #ff0000;
   color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
   border-radius: 15px;
 }
 
 .topnav .icon {
   display: none;
+  color: #fe142f;
 }
 
 @media screen and (max-width: 830px) {
   .topnav a {
     display: none;
   }
-  .topnav a.icon {
+  .topnav .icon {
     float: right;
     display: block;
   }
@@ -95,17 +99,6 @@ img {
     text-align: left;
   }
 }
-
- @media screen and (max-width: 540px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
 
 main {
   font-size: 130%;
