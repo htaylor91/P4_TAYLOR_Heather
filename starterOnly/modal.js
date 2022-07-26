@@ -209,7 +209,7 @@ function validCheckbox() {
 }
 
 /****************************
-    Valid the entire form
+    Validate the entire form
     Issue #2
     Issue #3
 ****************************/
