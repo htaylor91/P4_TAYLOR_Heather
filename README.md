@@ -15,7 +15,7 @@ GameOn est une PME, spécialisée dans les conférences et les concours de jeux.
 Clonez la source localement
 
 ```sh
-$ git clone https://github.com/htaylor91/P4_TAYLOR_Heather.git
+$ git clone https://github.com/taylorfullstack/P4_TAYLOR_Heather.git
 $ cd P4_TAYLOR_Heather
 ```
 
